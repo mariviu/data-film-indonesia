@@ -1,4 +1,6 @@
 jQuery(document).ready( function( $ ) {
+    //hides dropdown content
+    $(".selected-year").hide();
     //unhides first option content
     $("#2023").fadeIn();
     //listen to dropdown for change
