@@ -27,8 +27,8 @@ function id_films_data_assets() {
     wp_register_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
     wp_register_script( 'id-films-data', plugins_url( 'script.js' , __FILE__ ) );
 
-    wp_enqueue_style( 'id-films-data' );
-    wp_enqueue_script( 'id-films-data', array('jquery'), '1.0', true );
+    wp_enqueue_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
+    wp_enqueue_script( 'id-films-data', plugins_url( 'style.css' , __FILE__ ), array('jquery'), '1.0', true );
 }
 
 // Read and parse the JSON file
