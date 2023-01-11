@@ -51,7 +51,7 @@ function id_films_data_shortcode() {
     $output .= '</select>';
 
     foreach ($data as $year => $movies) {
-        $output .= '<div id=' . $year . ' class="selected-year hidden"> ';
+        $output .= '<div id=' . $year . ' class="selected-year"> ';
         foreach ($movies as $item) {
             $output .= '<div class="select-item"> <p> <span class="number">' . $item['number'] . '.</span><span class="title">' . $item['title'] . '</span></p>';
             $output .= '<p>' . $item['viewer'] . ' Penonton</p> </div>';
