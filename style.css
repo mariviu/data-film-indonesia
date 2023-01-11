@@ -1,0 +1,41 @@
+.selected-year {
+    margin: 0.4rem 0;
+}
+
+.select-item {
+    display: flex;
+    justify-content: start;
+}
+
+.select-item p:first-child {
+    width: 70%;
+}
+
+.select-item p:last-child {
+    width: 30%;
+}
+
+.select-item p {
+    width: 50%;
+    margin: 0.2rem 0;
+}
+
+.select-item p .number {
+    max-width: 1.5rem;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+#film-data select{
+    font-size: 1rem;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid #131313;
+    border-radius: 5px;
+    margin-left: 0.4rem;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
