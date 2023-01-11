@@ -1,4 +1,4 @@
-jQuery(function ($) {
+jQuery(document).ready( function( $ ) {
     //unhides first option content
     $("#2023").fadeIn();
     //listen to dropdown for change
