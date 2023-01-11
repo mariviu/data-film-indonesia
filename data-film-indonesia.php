@@ -10,26 +10,26 @@
  */
 
 // Add CSS
-// function id_films_data_enqueue_styles() {
-//     wp_enqueue_style('id-films-data-styles', plugin_dir_url(__FILE__) . 'style.css');
-// }
-// add_action('wp_enqueue_scripts', 'id_films_data_enqueue_styles');
+function id_films_data_enqueue_styles() {
+    wp_enqueue_style('id-films-data-styles', plugin_dir_url(__FILE__) . 'style.css');
+}
+add_action('wp_enqueue_scripts', 'id_films_data_enqueue_styles');
 
 // Add Javascript
-// function id_films_data_enqueue_scripts() {
-//     wp_enqueue_script('id-films-data-scripts', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '1.0', true);
-// }
-// add_action('wp_enqueue_scripts', 'id_films_data_enqueue_scripts');
+function id_films_data_enqueue_scripts() {
+    wp_enqueue_script('id-films-data-scripts', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'id_films_data_enqueue_scripts');
 
 // Enqueue assets
-add_action( 'wp_enqueue_scripts', 'id_films_data_assets' );
-function id_films_data_assets() {
-    wp_register_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
-    wp_register_script( 'id-films-data', plugins_url( 'script.js' , __FILE__ ) );
+// add_action( 'wp_enqueue_scripts', 'id_films_data_assets' );
+// function id_films_data_assets() {
+//     wp_register_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
+//     wp_register_script( 'id-films-data', plugins_url( 'script.js' , __FILE__ ) );
 
-    wp_enqueue_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
-    wp_enqueue_script( 'id-films-data', plugins_url( 'style.css' , __FILE__ ), array('jquery'), '1.0', true );
-}
+//     wp_enqueue_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
+//     wp_enqueue_script( 'id-films-data', plugins_url( 'style.css' , __FILE__ ), array('jquery'), '1.0', true );
+// }
 
 // Read and parse the JSON file
 function id_films_data_shortcode() {
@@ -48,18 +48,19 @@ function id_films_data_shortcode() {
     foreach ($data as $year => $movies) {
         $output .= '<option class="select-year" value="' . $year . '">'. $year . '</option>';
     }
-    $output .= '</select>';
+    $output .= '</select> <br><small>Kiri: Judul Film, Kanan: Total penonton bioskop</small>';
 
     foreach ($data as $year => $movies) {
         $output .= '<div id=' . $year . ' class="selected-year"> ';
         foreach ($movies as $item) {
-            $output .= '<div class="select-item"> <p> <span class="number">' . $item['number'] . '.</span><span class="title">' . $item['title'] . '</span></p>';
-            $output .= '<p>' . $item['viewer'] . ' Penonton</p> </div>';
+            $output .= '<div class="select-item"> <p class="number">' . $item['number'] . '.</p>';
+            $output .= '<p class="title">' . $item['title'] . '</p>';
+            $output .= '<p class="viewer">' . $item['viewer'] . '</p> </div>';
         }
         $output .= '</div>';
     }
 
-    $output .= '<small><i>Sumber: filmindonesia.or.id</i> <br>Data diperbaharui 1 minggu sekali</small> </div>';
+    $output .= '<small>Data diperbaharui 1 minggu sekali<br><i>Sumber: filmindonesia.or.id</i></small></div>';
 
     return $output;
 }
