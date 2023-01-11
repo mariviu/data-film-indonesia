@@ -10,16 +10,26 @@
  */
 
 // Add CSS
-function id_films_data_enqueue_styles() {
-    wp_enqueue_style('id-films-data-styles', plugin_dir_url(__FILE__) . 'style.css');
-}
-add_action('wp_enqueue_scripts', 'id_films_data_enqueue_styles');
+// function id_films_data_enqueue_styles() {
+//     wp_enqueue_style('id-films-data-styles', plugin_dir_url(__FILE__) . 'style.css');
+// }
+// add_action('wp_enqueue_scripts', 'id_films_data_enqueue_styles');
 
 // Add Javascript
-function id_films_data_enqueue_scripts() {
-    wp_enqueue_script('id-films-data-scripts', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '1.0', true);
+// function id_films_data_enqueue_scripts() {
+//     wp_enqueue_script('id-films-data-scripts', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '1.0', true);
+// }
+// add_action('wp_enqueue_scripts', 'id_films_data_enqueue_scripts');
+
+// Enqueue assets
+add_action( 'wp_enqueue_scripts', 'id_films_data_assets' );
+function id_films_data_assets() {
+    wp_register_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
+    wp_register_script( 'id-films-data', plugins_url( 'script.js' , __FILE__ ) );
+
+    wp_enqueue_style( 'id-films-data' );
+    wp_enqueue_script( 'id-films-data', array('jquery'), '1.0', true );
 }
-add_action('wp_enqueue_scripts', 'id_films_data_enqueue_scripts');
 
 // Read and parse the JSON file
 function id_films_data_shortcode() {
