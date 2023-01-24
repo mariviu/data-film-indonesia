@@ -60,7 +60,7 @@ function id_films_data_shortcode() {
         $output .= '</div>';
     }
 
-    $output .= '<small>Data diperbaharui 1 minggu sekali<br><i>Sumber: filmindonesia.or.id</i></small></div>';
+    $output .= '<small>Data diperbaharui 3 hari sekali<br><i>Sumber: filmindonesia.or.id</i></small></div>';
 
     return $output;
 }
