@@ -3,7 +3,7 @@
  * Plugin Name: Data Film Indonesia
  * Plugin URI: https://github.com/mariviu/data-film-indonesia
  * Description: A plugin to display data on the number of Indonesian film viewers
- * Version: 1.0
+ * Version: 1.1
  * Author: Anna Erdiawan
  * Author URI: https://erdiawan.com
  * License: MIT
