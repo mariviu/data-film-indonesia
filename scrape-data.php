@@ -8,24 +8,26 @@ $context = stream_context_create(
 );
 
 $urls = array(
-    'http://filmindonesia.or.id/movie/viewer/2023',
-    'http://filmindonesia.or.id/movie/viewer/2022',
-    'http://filmindonesia.or.id/movie/viewer/2021',
-    'http://filmindonesia.or.id/movie/viewer/2020',
-    'http://filmindonesia.or.id/movie/viewer/2019',
-    'http://filmindonesia.or.id/movie/viewer/2018',
-    'http://filmindonesia.or.id/movie/viewer/2017',
-    'http://filmindonesia.or.id/movie/viewer/2016',
-    'http://filmindonesia.or.id/movie/viewer/2015',
-    'http://filmindonesia.or.id/movie/viewer/2014',
-    'http://filmindonesia.or.id/movie/viewer/2012',
-    'http://filmindonesia.or.id/movie/viewer/2011',
-    'http://filmindonesia.or.id/movie/viewer/2010',
-    'http://filmindonesia.or.id/movie/viewer/2009',
-    'http://filmindonesia.or.id/movie/viewer/2008',
-    'http://filmindonesia.or.id/movie/viewer/2007',
-    // 'http://filmindonesia.or.id/movie/viewer/1973-1994'
-    // 'http://filmindonesia.or.id/movie/viewer/2007-2023',
+    'https://filmindonesia.or.id/film/penonton?tahun=2024',
+    'https://filmindonesia.or.id/film/penonton?tahun=2023',
+    'https://filmindonesia.or.id/film/penonton?tahun=2022',
+    'https://filmindonesia.or.id/film/penonton?tahun=2021',
+    'https://filmindonesia.or.id/film/penonton?tahun=2020',
+    'https://filmindonesia.or.id/film/penonton?tahun=2019',
+    'https://filmindonesia.or.id/film/penonton?tahun=2018',
+    'https://filmindonesia.or.id/film/penonton?tahun=2017',
+    'https://filmindonesia.or.id/film/penonton?tahun=2016',
+    'https://filmindonesia.or.id/film/penonton?tahun=2015',
+    'https://filmindonesia.or.id/film/penonton?tahun=2014',
+    'https://filmindonesia.or.id/film/penonton?tahun=2013',
+    'https://filmindonesia.or.id/film/penonton?tahun=2012',
+    'https://filmindonesia.or.id/film/penonton?tahun=2011',
+    'https://filmindonesia.or.id/film/penonton?tahun=2010',
+    'https://filmindonesia.or.id/film/penonton?tahun=2009',
+    'https://filmindonesia.or.id/film/penonton?tahun=2008',
+    'https://filmindonesia.or.id/film/penonton?tahun=2007',
+    'https://filmindonesia.or.id/film/penonton?tahun=1973-1994',
+    'https://filmindonesia.or.id/film/penonton'
 );
   
 $data = array();
@@ -41,10 +43,18 @@ foreach ($urls as $url) {
 
     $table_rows = $xpath->query('//table/tbody/tr');
 
-    $pattern = '/\/viewer\/(\d{4})/';
-    if (preg_match($pattern, $url, $matches)) {
-        $year = $matches[1];
+    if (preg_match('/tahun=([\d-]+)/', $url, $matches)) {
+        $tahun = $matches[1];
+        if (strpos($tahun, '-') !== false) {
+            $year = $tahun;
+        } else {
+            $year = $tahun;
+        }
+    } else {
+        $year = '2007-2024';
     }
+
+    echo "Year: $year\n";
 
     foreach ($table_rows as $row) {
         $cells = $xpath->query('td', $row);
