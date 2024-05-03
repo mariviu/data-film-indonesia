@@ -33,8 +33,8 @@ add_action('wp_enqueue_scripts', 'id_films_data_enqueue_scripts');
 
 // Read and parse the JSON file
 function id_films_data_shortcode() {
-    $defaultJson = 'default-film-indonesia.json';
-    $updatedJson = 'film-indonesia.json';
+    $defaultJson = plugin_dir_path( __FILE__ ) . 'default-film-indonesia.json';
+    $updatedJson = plugin_dir_path( __FILE__ ) . 'film-indonesia.json';
     if (!file_exists($updatedJson)) {
         $jsonData = $defaultJson;
     } else {
