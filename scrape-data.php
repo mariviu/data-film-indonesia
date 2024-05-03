@@ -26,11 +26,14 @@ $urls = array(
     'https://filmindonesia.or.id/film/penonton?tahun=2009',
     'https://filmindonesia.or.id/film/penonton?tahun=2008',
     'https://filmindonesia.or.id/film/penonton?tahun=2007',
-    'https://filmindonesia.or.id/film/penonton?tahun=1973-1994',
+    // 'https://filmindonesia.or.id/film/penonton?tahun=1973-1994',
     'https://filmindonesia.or.id/film/penonton'
 );
   
-$data = array();
+$data = array(
+    '2007-2024' => array()
+);
+$previous_year = null;
 foreach ($urls as $url) {
     $html = file_get_contents($url, false, $context);
 
@@ -52,6 +55,11 @@ foreach ($urls as $url) {
         }
     } else {
         $year = '2007-2024';
+    }
+
+    if ($previous_year !== $year) {
+        $data[$year] = array();
+        $previous_year = $year;
     }
 
     echo "Year: $year\n";
