@@ -2,7 +2,7 @@ jQuery(document).ready( function( $ ) {
     //hides dropdown content
     $(".selected-year").hide();
     //unhides first option content
-    $("#2007-2024").fadeIn();
+    $("#2024").fadeIn();
     //listen to dropdown for change
     $("#film-data").change(function(){
       //rehide content on change
