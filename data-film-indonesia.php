@@ -3,7 +3,7 @@
  * Plugin Name: Data Film Indonesia
  * Plugin URI: https://github.com/mariviu/data-film-indonesia
  * Description: A plugin to display data on the number of Indonesian film viewers
- * Version: 1.1
+ * Version: 1.2
  * Author: Anna Erdiawan
  * Author URI: https://erdiawan.com
  * License: MIT
@@ -20,16 +20,6 @@ function id_films_data_enqueue_scripts() {
     wp_enqueue_script('id-films-data-scripts', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'id_films_data_enqueue_scripts');
-
-// Enqueue assets
-// add_action( 'wp_enqueue_scripts', 'id_films_data_assets' );
-// function id_films_data_assets() {
-//     wp_register_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
-//     wp_register_script( 'id-films-data', plugins_url( 'script.js' , __FILE__ ) );
-
-//     wp_enqueue_style( 'id-films-data', plugins_url( 'style.css' , __FILE__ ) );
-//     wp_enqueue_script( 'id-films-data', plugins_url( 'style.css' , __FILE__ ), array('jquery'), '1.0', true );
-// }
 
 // Read and parse the JSON file
 function id_films_data_shortcode() {
