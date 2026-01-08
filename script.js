@@ -1,13 +1,18 @@
-jQuery(document).ready( function( $ ) {
-    //hides dropdown content
+jQuery(document).ready(function($) {
+    // Sembunyikan semua
     $(".selected-year").hide();
-    //unhides first option content
-    $("#2007-2024").fadeIn();
-    //listen to dropdown for change
-    $("#film-data").change(function(){
-      //rehide content on change
-      $('.selected-year').hide();
-      //unhides current item
-      $('#'+$('#film-data option:selected').val()).fadeIn();
+
+    // Tampilkan hanya tahun default (2025)
+    $(".selected-year").each(function() {
+        if ($(this).attr("id") === "2025") {
+            $(this).show();
+        }
+    });
+
+    // Tangani perubahan dropdown
+    $("#film-data select").on("change", function() {
+        var selectedYear = $(this).val();
+        $(".selected-year").hide();
+        $("#" + selectedYear).fadeIn();
     });
 });
