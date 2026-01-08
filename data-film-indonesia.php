@@ -34,23 +34,33 @@ function id_films_data_shortcode() {
     $data = json_decode($id_films_data, true);
 
     $output = '<div id="film-data">';
-    $output .= '<div> <span>Pilih Tahun </span> <select>';
+    $output .= '<div> <small>Pilih Tahun </small> <select>';
+    
     foreach ($data as $year => $movies) {
-        $output .= '<option class="select-year" value="' . $year . '">'. $year . '</option>';
+        $selected = ($year == '2025') ? 'selected' : '';
+        $output .= '<option class="select-year" value="' . $year . '" ' . $selected . '>'. $year . '</option>';
     }
-    $output .= '</select> <br><small>Kiri: Judul Film, Kanan: Total penonton bioskop</small>';
-
+    // $output .= '</select> <br><small>Kiri: Judul Film, Kanan: Total penonton bioskop</small>';
+    $output .= '</select>';
+    
+    
     foreach ($data as $year => $movies) {
-        $output .= '<div id=' . $year . ' class="selected-year"> ';
-        foreach ($movies as $item) {
-            $output .= '<div class="select-item"> <p class="number">' . $item['number'] . '.</p>';
-            $output .= '<p class="title">' . $item['title'] . '</p>';
-            $output .= '<p class="viewer">' . $item['viewer'] . '</p> </div>';
+        $output .= '<div id="' . $year . '" class="selected-year">';
+        $output .= '<table class="film-table">';
+        $output .= '<thead><tr><th>@</th><th>Judul</th><th>Penonton</th></tr></thead>';
+        $output .= '<tbody>';
+        $limited_movies = array_slice($movies, 0, 10);
+        foreach ($limited_movies as $item) {
+            $output .= '<tr>';
+            $output .= '<td>' . $item['number'] . '</td>';
+            $output .= '<td>' . $item['title'] . '</td>';
+            $output .= '<td>' . $item['viewer'] . '</td>';
+            $output .= '</tr>';
         }
-        $output .= '</div>';
+        $output .= '</tbody></table></div>';
     }
 
-    $output .= '<small>Data diperbaharui 3 hari sekali<br><i>Sumber: filmindonesia.or.id</i></small></div>';
+    $output .= '<div class="footer-film"><span>Data diperbaharui 1 hari sekali</span><i>Sumber: filmindonesia.or.id</i></div></div>';
 
     return $output;
 }
